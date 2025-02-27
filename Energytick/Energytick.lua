@@ -120,9 +120,13 @@ local OnEvent = function(self, event, ...)
     PlayerFrameManaBar.energy.spark:SetAlpha(.4)
   elseif event == "UPDATE_SHAPESHIFT_FORM" and class == "DRUID" then
     if (UnitPowerType("player") ~= 3) then
-      PlayerFrameManaBar.energy.spark:SetAlpha(0)
-		else
-      PlayerFrameManaBar.energy.spark:SetAlpha(1)
+		if PlayerFrameManaBar.energy then
+			PlayerFrameManaBar.energy.spark:SetAlpha(0)
+		end
+	else
+		if PlayerFrameManaBar.energy then
+			PlayerFrameManaBar.energy.spark:SetAlpha(1)
+		end
     end
   elseif event == "UNIT_POWER_UPDATE" then
     UpdateEnergy()
